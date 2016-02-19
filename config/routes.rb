@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :items
+  resources :menu_items
+  resources :menu_items
+  resources :modifiers
+  resources :modifiers
+  resources :menu_items
+  resources :customizations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

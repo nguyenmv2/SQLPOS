@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @customization.item_id %>
+</p>
+
+<p>
+  <strong>Modifier:</strong>
+  <%= @customization.modifier_id %>
+</p>
+
+<%= link_to 'Edit', edit_customization_path(@customization) %> |
+<%= link_to 'Back', customizations_path %>

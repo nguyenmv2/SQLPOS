@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Customizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Modifier</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customizations.each do |customization| %>
+      <tr>
+        <td><%= customization.item_id %></td>
+        <td><%= customization.modifier_id %></td>
+        <td><%= link_to 'Show', customization %></td>
+        <td><%= link_to 'Edit', edit_customization_path(customization) %></td>
+        <td><%= link_to 'Destroy', customization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customization', new_customization_path %>
