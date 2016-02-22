@@ -10,6 +10,9 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @items = Item.find(params[:id])
+    @menu = @item.menu_item
+
   end
 
   # GET /items/new
@@ -25,7 +28,8 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
+    @menu = @item.menu_item
+    @item.price = @menu.price
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -69,6 +73,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :price, :menu_item_id)
+      # params.require(:item).permit(:name, :price,:menu_item_id)
+      params.require(:item).permit(:price, :menu_item_id,:order_id)
     end
 end
