@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @orders = Order.find(params[:id])
-    @order.total=@orders.calPrice(@orders.id)
+    @orders.update_column(:total, @orders.calPrice(@orders.id))
   end
 
   # GET /orders/new
