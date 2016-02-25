@@ -3,7 +3,9 @@
   <component name="dataSourceStorageLocal">
     <data-source name="Rails SQLPOS: development" uuid="0a26787c-cb02-463d-b3af-18f395fea181">
       <auth-required>false</auth-required>
-      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails SQLPOS: test" uuid="173439b6-642d-4eda-bc29-2f0bd0ab4235">
+      <auth-required>false</auth-required>
     </data-source>
   </component>
 </project>

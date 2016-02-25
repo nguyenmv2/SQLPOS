@@ -15,3 +15,4 @@ menu1 = MenuItem.create!([
 menu2 = MenuItem.create!([
                              {name: 'Steam Rice', price: 10.50}
                          ])
+

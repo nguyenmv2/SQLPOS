@@ -1,27 +1,32 @@
 <%= form_for(@item) do |f| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+    <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-      <ul>
-      <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-
-  <div class="field">
-    <%= f.label :menu_item_id %><br>
-    <%= f.number_field :menu_item_id %>
-  </div>
     <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
-  </div>
+      <%= f.label 'Select Item: ' %>
+      <%= f.collection_select :menu_item_id, MenuItem.all, :id, :name, prompt: true %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <!--<div class="field">-->
+      <!--<%= f.label 'Select Item: ' %>-->
+      <!--<%= f.collection_select :menu_item_id, MenuItem.all, :id, :name, prompt: true %>-->
+    <!--</div>-->
+
+    <div class="field">
+      <%= f.label 'Select Order: ' %>
+      <%= f.collection_select :order_id, Order.all, :id, :total, prompt: true%>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

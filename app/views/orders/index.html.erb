@@ -1,29 +1,125 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="left">
+    <h1>Listing Orders</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Total</th>
+          <th>Item</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<h1>Listing Orders</h1>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.total %></td>
+            <td><%= link_to 'Show', order %></td>
+            <td><%= link_to 'Edit', edit_order_path(order) %></td>
+            <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Order', new_order_path %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Total</th>
-      <th>Item</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h1>Listing Items</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>OrderID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@items.nil? %>
+          <% @items.each do |item| %>
+          <tr>
+            <td><%= item.menu_item.name %></td>
+            <td><%= item.price %></td>
+            <td><%= item.order_id %></td>
+            <td><%= link_to 'Show', item %></td>
+            <td><%= link_to 'Edit', edit_item_path(item) %></td>
+            <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Item', new_item_path %>
 
-  <tbody>
-    <% @orders.each do |order| %>
+    <h1>Listing Customizations</h1>
+    <table>
+      <thead>
       <tr>
-        <td><%= order.total %></td>
-        <td><%= order.item_id %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Item_Name</th>
+        <th>DeltaPrice</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @customization.each do |c| %>
+          <tr>
+            <td><%= c.modifier.name %></td>
+            <td><%= c.item.menu_item.name %></td>
+            <td><%= c.modifier.deltaPrice %></td>
+            <td><%= link_to 'Show', c %></td>
+            <td><%= link_to 'Edit', edit_customization_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Customization', new_customization_path %>
+  </div>
 
-<br>
+  <div class="right">
+    <h1>Listing MenuItem</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @menuItems.each do |menuItem| %>
+          <tr>
+            <td><%= menuItem.name %></td>
+            <td><%= menuItem.price %></td>
 
-<%= link_to 'New Order', new_order_path %>
+            <td><%= link_to 'Show', menuItem %></td>
+            <td><%= link_to 'Edit', edit_menu_item_path(menuItem) %></td>
+            <td><%= link_to 'Destroy', menuItem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New MenuItem', new_menu_item_path %>
+
+    <h1>Listing Modifer </h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>DeltaPrice</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @modifiers.each do |modifier| %>
+          <tr>
+            <td><%= modifier.name %></td>
+            <td><%= modifier.deltaPrice %></td>
+
+            <td><%= link_to 'Show', modifier %></td>
+            <td><%= link_to 'Edit', edit_modifier_path(modifier) %></td>
+            <td><%= link_to 'Destroy', modifier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Modifier', new_modifier_path %>
+  </div>
+</div>

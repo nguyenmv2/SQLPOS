@@ -1,16 +1,13 @@
 class Order < ActiveRecord::Base
-  has_many :items
-
-  def calPrice(id)
+  has_many :items, dependent: :destroy
+  def calPrice()
     sum = 0
-    items = Item.find_by_order_id(id)
+    order = Order.find(self.id)
 
-    Item.all.each { |i|
-      if (i.id == id)
-        sum += i.getPrice
-      end
-    }
-    return sum
+    order.items.each do |item|
+      sum += item.price
+    end
+    order.update_attributes :total => sum
   end
 
 end
