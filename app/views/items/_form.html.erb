@@ -16,14 +16,10 @@
       <%= f.collection_select :menu_item_id, MenuItem.all, :id, :name, prompt: true %>
     </div>
 
-    <!--<div class="field">-->
-      <!--<%= f.label 'Select Item: ' %>-->
-      <!--<%= f.collection_select :menu_item_id, MenuItem.all, :id, :name, prompt: true %>-->
-    <!--</div>-->
 
     <div class="field">
       <%= f.label 'Select Order: ' %>
-      <%= f.collection_select :order_id, Order.all, :id, :total, prompt: true%>
+      <%= f.collection_select :order_id, Order.all, :id, :table, prompt: true%>
     </div>
 
     <div class="actions">
