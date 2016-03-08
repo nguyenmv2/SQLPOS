@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :menu_items
   resources :customizations
 
-  root 'orders#index'
+  root 'menu_items#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

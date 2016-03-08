@@ -1,5 +1,5 @@
-@MenuItem = React.createClass
-  getInitialState: -> 
+@Modifier = React.createClass
+  getInitialState: ->
     edit: false
 
   handleToggle: (e) ->
@@ -10,55 +10,56 @@
     e.preventDefault()
     $.ajax
       method: 'DELETE'
-      url: "/menu_items/#{ @props.menu_item.id }"
+      url: "/modifiers/#{@props.modifier.id }"
       dataType: 'JSON'
       success: () =>
-        @props.handleDeleteMenuItem @props.menu_item
+        @props.handleDeleteModifier @props.modifier
 
-  handleEdit: (e) ->
+  handleEdit: (e, data) ->
     e.preventDefault()
-    data = 
+    data =
       name: ReactDOM.findDOMNode(@refs.name).value
-      price: ReactDOM.findDOMNode(@refs.price).value
+      deltaPrice: ReactDOM.findDOMNode(@refs.deltaPrice).value
     $.ajax
       method: 'PUT'
-      url: "/menu_items/#{ @props.menu_item.id}"
+      url: "/modifiers/#{@props.modifier.id }"
       dataType: 'JSON'
-      data:
-        menu_item: data
+      data: 
+        modifier: data
       success: (data) =>
         @setState edit: false
-        @props.handleEditMenuItem @props.menu_item, data
-  
+        @props.handleEditModifier @props.modifier, data
+
   showView: ->
     React.DOM.tr null,
-      React.DOM.td null, @props.menu_item.name
-      React.DOM.td null, @props.menu_item.price
+      React.DOM.td null, @props.modifier.name
+      React.DOM.td null, @props.modifier.deltaPrice
       React.DOM.td null,
-        React.DOM.a
+        React.DOM.a 
           className: 'btn btn-default'
           onClick: @handleToggle
           'Edit'
-        React.DOM.a
+        React.DOM.a 
           className: 'btn btn-danger'
           onClick: @handleDelete
           'Destroy'
+
   editView: ->
     React.DOM.tr null,
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.menu_item.name
+          defaultValue: @props.modifier.name
           ref: 'name'
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
           type: 'number'
-          defaultValue: @props.menu_item.price
-          ref: 'price'
+          defaultValue: @props.modifier.deltaPrice
+          ref: 'deltaPrice'
       React.DOM.td null,
-        React.DOM.a
+        React.DOM.a 
           className: 'btn btn-default'
           onClick: @handleEdit
           'Update'
@@ -67,8 +68,11 @@
           onClick: @handleToggle
           'Cancel'
 
-  render: ->
+  render: -> 
     if (@state.edit)
       @editView()
     else
       @showView()
+
+
+

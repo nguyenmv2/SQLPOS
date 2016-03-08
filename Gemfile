@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-react-dom'
+end
+
+gem 'bundler', '>= 1.8.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-# Use sqlite3 as the database for Active Record
+# Use sqlite3 as the database for Ativ' Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
