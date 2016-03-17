@@ -7,7 +7,8 @@
        dataType: 'JSON'
        success: () =>
          @props.handleDeleteMenuItem @props.order
+   render: ->
+     @props
 
-    handleEdit
 
 

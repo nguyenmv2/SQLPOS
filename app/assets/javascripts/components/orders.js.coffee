@@ -13,9 +13,8 @@
 
   deleteOrder: (order) -> 
     index = @state.orders.indexOf order
-    orders = React.addons.update(
-      @state.orders, {$splice: [[index, 1]]
-    )
+    orders = React.addons.update(@state.orders, {$splice: [[index, 1]] })
+
     @replaceState orders: orders
 
   updateOrder: (order, data) ->
@@ -31,7 +30,6 @@
       React.DOM.h3
         className: 'title'
         'Orders'
-
       React.DOM.table
         className: 'table table-striped table-sm table-bordered' 
         React.DOM.thead
@@ -40,13 +38,13 @@
             React.DOM.th null, 'Table No'
             React.DOM.th null, 'Total'
             React.DOM.th null, 'Action'
-        React.DOM.tbody null,
-          for order in @state.order
-            React.createElement Order, 
-              key: order.id, 
-              order: order,
-              handleDeleteOrder: @deleteOrder,
-              handleEditOrder: @updateOrder
+#        React.DOM.tbody null,
+#          for order in @state.order
+#            React.createElement Order,
+#              key: order.id,
+#              order: order,
+#              handleDeleteOrder: @deleteOrder,
+#              handleEditOrder: @updateOrder
 
   render: ->
     @renderOrderView()

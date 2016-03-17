@@ -11,10 +11,11 @@
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '/menu_items ', { menu_item: @state }, (data) =>
-      @props.handleNewMenuItem data
-      @setState @getInitialState()
-    , 'JSON'
+    data =
+      name:     @state.name
+      price:    @state.price
+    MenuItemsActions.addMenuItem(data)
+    @setState @getInitialState()
 
   render: ->
     React.DOM.form
@@ -41,7 +42,7 @@
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'
-        disable: !@valid()
+        disabled: !(@valid())
         'Create Menu Item'
 
 

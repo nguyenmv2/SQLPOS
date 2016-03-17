@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-react-dom'
+  gem 'rails-assets-alt'
+  gem 'rails-assets-lodash'
+
 end
 
 gem 'bundler', '>= 1.8.4'
@@ -41,6 +44,7 @@ gem 'devise'
 # React gem
 gem 'react-rails'
 
+gem 'react-router-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

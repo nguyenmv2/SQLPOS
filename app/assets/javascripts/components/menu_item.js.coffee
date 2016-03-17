@@ -7,28 +7,16 @@
     @setState edit: !@state.edit
 
   handleDelete: (e) ->
-    e.preventDefault()
-    $.ajax
-      method: 'DELETE'
-      url: "/menu_items/#{ @props.menu_item.id }"
-      dataType: 'JSON'
-      success: () =>
-        @props.handleDeleteMenuItem @props.menu_item
+    MenuItemsActions.deleteMenuItem(@props.menu_item.id)
 
   handleEdit: (e) ->
-    e.preventDefault()
-    data = 
-      name: ReactDOM.findDOMNode(@refs.name).value
-      price: ReactDOM.findDOMNode(@refs.price).value
-    $.ajax
-      method: 'PUT'
-      url: "/menu_items/#{ @props.menu_item.id}"
-      dataType: 'JSON'
-      data:
-        menu_item: data
-      success: (data) =>
-        @setState edit: false
-        @props.handleEditMenuItem @props.menu_item, data
+    data =
+      id:     @props.menu_item.id
+      name:   @refs.name.value
+      price:  @refs.price.value
+    MenuItemsActions.editMenuItem(data)
+    @setState edit: false
+
   
   showView: ->
     React.DOM.tr null,

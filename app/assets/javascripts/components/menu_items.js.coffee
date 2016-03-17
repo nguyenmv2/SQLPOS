@@ -1,27 +1,16 @@
 @MenuItems = React.createClass
   getInitialState: ->
-    menu_items: @props.data
-
-  getDefaultProps: ->
     menu_items: []
-  
-  addMenuItem: (menu_item) ->
-    menu_items = React.addons.update(
-      @state.menu_items, { $push: [menu_item] }
-    )
-    @setState menu_items: menu_items
 
-  deleteMenuItem: (menu_item) ->
-    index = @state.menu_items.indexOf menu_item
-    menu_items = React.addons.update(
-      @state.menu_items, { $splice: [[index, 1]]}
-    )
-    @replaceState menu_items: menu_items
-  
-  updateMenuItem: (menu_item, data) ->
-    index = @state.menu_items.indexOf menu_item
-    menu_items = React.addons.update(@state.menu_items, { $splice: [[index, 1, data]] })
-    @setState menu_items: menu_items
+  componentWillMount: ->
+    MenuItemsStore.listen(@onChange)
+    MenuItemsActions.initData(@props.data)
+
+  componentWillUnmount: ->
+    MenuItemsStore.unlisten(@onChange)
+
+  onChange: (state) ->
+    @setState(state)
 
   render: -> 
     React.DOM.div
@@ -29,7 +18,7 @@
       React.DOM.h3
         className: 'title'
         'Menu Items'
-      React.createElement MenuItemsForm, handleNewMenuItem: @addMenuItem     
+      React.createElement MenuItemsForm
       React.DOM.table
         className: 'table table-striped table-sm table-bordered'
         React.DOM.thead
@@ -40,9 +29,8 @@
             React.DOM.th null, 'Action'
         React.DOM.tbody null,
           for menu_item in @state.menu_items
-            React.createElement MenuItem, 
-              key: menu_item.id, 
-              menu_item: menu_item,
-              handleDeleteMenuItem: @deleteMenuItem,
-              handleEditMenuItem: @updateMenuItem
+            React.createElement MenuItem,
+              key: menu_item.id,
+              menu_item: menu_item
+
 
