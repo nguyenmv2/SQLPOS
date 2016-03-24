@@ -9,7 +9,7 @@ gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Ativ' Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'bootstrap-sass', '~> 3.3.6'
+
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -53,3 +53,18 @@ group :development do
   gem 'spring'
 end
 
+
+# require: false is necessary for the linters as we only want them loaded
+# when used by the linting rake tasks.
+group :development do
+  gem("rubocop", require: false)
+  gem("ruby-lint", require: false)
+  gem("scss_lint", require: false)
+end
+
+# For Heroku deployment
+gem 'rails_12factor', group: :production
+gem 'puma', group: :production
+
+
+gem 'bootstrap-sass'
