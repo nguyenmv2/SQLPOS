@@ -2,7 +2,7 @@
   getInitialState: ->
     menu_items: []
 
-  componentWillMount: ->
+  componentDidMount: ->
     MenuItemsStore.listen(@onChange)
     MenuItemsActions.initData(@props.data)
 

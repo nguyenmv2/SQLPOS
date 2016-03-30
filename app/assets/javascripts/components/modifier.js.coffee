@@ -6,29 +6,47 @@
     e.preventDefault()
     @setState edit: !@state.edit
 
-  handleDelete: (e) ->
-    e.preventDefault()
-    $.ajax
-      method: 'DELETE'
-      url: "/modifiers/#{@props.modifier.id }"
-      dataType: 'JSON'
-      success: () =>
-        @props.handleDeleteModifier @props.modifier
+  # handleDelete: (e) ->
+  #   ModifiersActions.
+  
+  handleEdit: (e) -> 
 
-  handleEdit: (e, data) ->
-    e.preventDefault()
     data =
-      name: ReactDOM.findDOMNode(@refs.name).value
-      deltaPrice: ReactDOM.findDOMNode(@refs.deltaPrice).value
-    $.ajax
-      method: 'PUT'
-      url: "/modifiers/#{@props.modifier.id }"
-      dataType: 'JSON'
-      data: 
-        modifier: data
-      success: (data) =>
-        @setState edit: false
-        @props.handleEditModifier @props.modifier, data
+      id:         @props.modifier.id
+      name:       @props.name.value
+      deltaPrice: @refs.deltaPrice.value  
+
+    ModifiersActions.editModifier(data)
+    @emitChange()
+    @setState edit: false
+    
+  # handleToggle: (e) ->
+  #   e.preventDefault()
+  #   @setState edit: !@state.edit
+
+  # handleDelete: (e) ->
+  #   e.preventDefault()
+  #   $.ajax
+  #     method: 'DELETE'
+  #     url: "/modifiers/#{@props.modifier.id }"
+  #     dataType: 'JSON'
+  #     success: () =>
+  #       @props.handleDeleteModifier @props.modifier
+
+  # handleEdit: (e, data) ->
+  #   e.preventDefault()
+  #   data =
+  #     name: ReactDOM.findDOMNode(@refs.name).value
+  #     deltaPrice: ReactDOM.findDOMNode(@refs.deltaPrice).value
+  #   $.ajax
+  #     method: 'PUT'
+  #     url: "/modifiers/#{@props.modifier.id }"
+  #     dataType: 'JSON'
+  #     data: 
+  #       modifier: data
+  #     success: (data) =>
+  #       @setState edit: false
+  #       @props.handleEditModifier @props.modifier, data
 
   showView: ->
     React.DOM.tr null,

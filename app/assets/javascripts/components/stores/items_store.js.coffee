@@ -1,17 +1,17 @@
-class ItemsStore
-  @displayName: 'ItemsStore'
+# class ItemsStore
+#   @displayName: 'ItemsStore'
 
-  constructor: ->
-    @bindActions(ItemsActions)
-    @items = []
-#    @exportPublicMethods(
-#      {
-#        getItems: @getItems
-#      }
-#    )
-
-
+#   constructor: ->
+#     @bindActions(ItemsActions)
+#     @items = []
+# #    @exportPublicMethods(
+# #      {
+# #        getItems: @getItems
+# #      }
+# #    )
 
 
 
-@ItemsStore = alt.createStore(ItemsStore)
+
+
+# @ItemsStore = alt.createStore(ItemsStore)

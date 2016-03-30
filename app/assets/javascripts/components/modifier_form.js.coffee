@@ -12,10 +12,11 @@
 
   handleSubmit: (e) -> 
     e.preventDefault()
-    $.post '/modifiers', { modifier: @state } , (data) =>
-      @props.handleNewModifier data
-      @setState @getInitialState()
-    , 'JSON'
+    data =
+      name:          @state.name
+      deltaPrice:    @state.deltaPrice
+    ModifiersActions.addModifier(data)
+    @setState @getInitialState()
 
   render: ->
     React.DOM.form

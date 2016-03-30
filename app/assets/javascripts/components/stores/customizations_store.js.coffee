@@ -1,14 +1,14 @@
-class CustomizationsStore
-  @displayName: 'CustomizationStore'
+# class CustomizationsStore
+#   @displayName: 'CustomizationStore'
 
-  constructor: ->
-    @bindActions(CustomizationsActions)
-    @customizations = []
+#   constructor: ->
+#     @bindActions(CustomizationsActions)
+#     @customizations = []
 
-#    @exportPublicMethods(
-#      {
-#        getCustomizations: @getCustomizations
-#      }
-#    )
+# #    @exportPublicMethods(
+# #      {
+# #        getCustomizations: @getCustomizations
+# #      }
+# #    )
 
-@CustomizationsStore = alt.createStore(CustomizationsStore)
+# @CustomizationsStore = alt.createStore(CustomizationsStore)

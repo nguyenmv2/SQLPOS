@@ -10,6 +10,7 @@ class MenuItemsStore
         getMenuItems: @getMenuItems
       }
     )
+
   onEditMenuItem: (props) ->
     data =
       name:   props.name
@@ -39,13 +40,29 @@ class MenuItemsStore
         )
         @emitChange()
 
+  succ: (e) ->
+    @menu_items = React.addons.update(
+      @menu_items, { $push: [e] }
+    )
+    @emitChange()
+
   onAddMenuItem: (data) ->
-    $.post '/menu_items ', { menu_item: data }, (e) =>
-      @menu_items = React.addons.update(
-        @menu_items, { $push: [e] }
-      )
-      @emitChange()
-    , 'JSON'
+    dat = { menu_item: data }
+    URL = '/menu_items '
+    $.ajax
+      method: 'POST'
+      url: URL
+      dataType: 'JSON'
+      data: dat
+      success: (k) =>
+        @succ(k)
+        
+    # $.post '/menu_items ', { menu_item: data }, (e) =>
+    #   @menu_items = React.addons.update(
+    #     @menu_items, { $push: [e] }
+    #   )
+    #   @emitChange()
+    # , 'JSON'
 
   onInitData: (props) ->
     @menu_items = props
