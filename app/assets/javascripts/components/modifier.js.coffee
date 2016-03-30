@@ -6,58 +6,29 @@
     e.preventDefault()
     @setState edit: !@state.edit
 
-  # handleDelete: (e) ->
-  #   ModifiersActions.
-  
-  handleEdit: (e) -> 
+  handleDelete: (e) ->
+    e.preventDefault
+    ModifiersActions.deleteModifier(@props.modifier.id)
+
+  handleEdit: (e) ->
 
     data =
       id:         @props.modifier.id
-      name:       @props.name.value
-      deltaPrice: @refs.deltaPrice.value  
-
+      name:       @refs.name.value
+      deltaPrice: @refs.deltaPrice.value
     ModifiersActions.editModifier(data)
-    @emitChange()
     @setState edit: false
-    
-  # handleToggle: (e) ->
-  #   e.preventDefault()
-  #   @setState edit: !@state.edit
-
-  # handleDelete: (e) ->
-  #   e.preventDefault()
-  #   $.ajax
-  #     method: 'DELETE'
-  #     url: "/modifiers/#{@props.modifier.id }"
-  #     dataType: 'JSON'
-  #     success: () =>
-  #       @props.handleDeleteModifier @props.modifier
-
-  # handleEdit: (e, data) ->
-  #   e.preventDefault()
-  #   data =
-  #     name: ReactDOM.findDOMNode(@refs.name).value
-  #     deltaPrice: ReactDOM.findDOMNode(@refs.deltaPrice).value
-  #   $.ajax
-  #     method: 'PUT'
-  #     url: "/modifiers/#{@props.modifier.id }"
-  #     dataType: 'JSON'
-  #     data: 
-  #       modifier: data
-  #     success: (data) =>
-  #       @setState edit: false
-  #       @props.handleEditModifier @props.modifier, data
 
   showView: ->
     React.DOM.tr null,
       React.DOM.td null, @props.modifier.name
       React.DOM.td null, @props.modifier.deltaPrice
       React.DOM.td null,
-        React.DOM.a 
+        React.DOM.a
           className: 'btn btn-default'
           onClick: @handleToggle
           'Edit'
-        React.DOM.a 
+        React.DOM.a
           className: 'btn btn-danger'
           onClick: @handleDelete
           'Destroy'
@@ -77,7 +48,7 @@
           defaultValue: @props.modifier.deltaPrice
           ref: 'deltaPrice'
       React.DOM.td null,
-        React.DOM.a 
+        React.DOM.a
           className: 'btn btn-default'
           onClick: @handleEdit
           'Update'
@@ -86,11 +57,8 @@
           onClick: @handleToggle
           'Cancel'
 
-  render: -> 
+  render: ->
     if (@state.edit)
       @editView()
     else
       @showView()
-
-
-

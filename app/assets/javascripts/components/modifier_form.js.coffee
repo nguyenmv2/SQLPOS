@@ -6,11 +6,11 @@
   valid: ->
     @state.name && @state.deltaPrice
 
-  handleChange: (e) -> 
+  handleChange: (e) ->
     name = e.target.name
     @setState "#{name}": e.target.value
 
-  handleSubmit: (e) -> 
+  handleSubmit: (e) ->
     e.preventDefault()
     data =
       name:          @state.name
@@ -43,7 +43,5 @@
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'
-        disable: !@valid()
+        disable: !(@valid())
         'Create Modifier'
-
-

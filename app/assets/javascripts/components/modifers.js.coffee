@@ -1,6 +1,6 @@
 @Modifiers = React.createClass
   getInitialState: ->
-    modifiers: @props.data
+    modifiers: []
 
   componentDidMount: ->
     ModifiersStore.listen(@onChange)
@@ -9,34 +9,13 @@
   componentWillUnmount: ->
     ModifiersStore.unlisten(@onChange)
 
-  onChange: (state) -> 
+  onChange: (state) ->
     @setState(state)
-    
-  # getDefaultProps: ->
-  #   modifiers: []
 
-  # addModifier: (modifier) ->
-  #   modifiers = React.addons.update(
-  #     @state.modifiers, { $push: [modifier] }
-  #   )
-  #   @setState modifiers: modifiers
+  
 
-  # deleteModifier: (modifier) ->
-  #   index = @state.modifiers.indexOf modifier
-  #   modifiers = React.addons.update(
-  #     @state.modifiers, { $splice: [[index, 1]]}
-  #   )
-  #   @replaceState modifiers: modifiers
-
-  # updateModifier: (modifier, data) -> 
-  #   index = @state.modifiers.indexOf modifier
-  #   modifiers = React.addons.update(
-  #     @state.modifiers, { $splice: [[index, 1, data]] }
-  #   )
-  #   @setState modifiers: modifiers
-
-  render: -> 
-    React.DOM.div 
+  render: ->
+    React.DOM.div
       className: 'modifiers'
       React.DOM.h3
         className: 'title'
@@ -49,12 +28,8 @@
             React.DOM.th null, 'Name'
             React.DOM.th null, 'Delta Price'
             React.DOM.th null, 'Action'
-        React.DOM.tbody null, 
+        React.DOM.tbody null,
           for modifier in @state.modifiers
             React.createElement Modifier,
               key: modifier.id,
               modifier: modifier
-              
-
-
-      

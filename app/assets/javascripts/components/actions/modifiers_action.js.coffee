@@ -3,7 +3,8 @@ class ModifiersActions
     @generateActions(
       'initData',
       'addModifier',
-      'editModifier'
+      'editModifier',
+      'deleteModifier'
     )
 
 @ModifiersActions = alt.createActions(ModifiersActions)
