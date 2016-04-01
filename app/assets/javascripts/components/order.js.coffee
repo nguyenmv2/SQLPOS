@@ -1,14 +1,18 @@
 @Order = React.createClass
-   handleDelete: (e) ->
-     e.preventDefault()
-     e.ajax
-       method: 'DELETE'
-       url : "orders/#{ @props.orders.id}"
-       dataType: 'JSON'
-       success: () =>
-         @props.handleDeleteMenuItem @props.order
-   render: ->
-     @props
+# Table - Order ID - Total - Actions
 
+  render: ->
+    React.DOM.tr null,
+      React.DOM.td null, @props.Order.table
+      React.DOM.td null, @props.Order.id
+      React.DOM.td null, @props.Order.total
 
+      React.DOM.td null,
+        React.DOM.a
+          className: 'btn btn-default'
 
+          'View'
+        React.DOM.a
+          className: 'btn btn-danger'
+
+          'Destroy'

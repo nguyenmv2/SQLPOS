@@ -2,10 +2,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :items
   resources :menu_items
-  resources :menu_items
   resources :modifiers
-  resources :modifiers
-  resources :menu_items
   resources :customizations
 
   root 'menu_items#index'

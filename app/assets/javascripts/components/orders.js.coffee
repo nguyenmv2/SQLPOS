@@ -1,52 +1,36 @@
 @Orders = React.createClass
-  getIntialState: -> 
-    orders: @props.data
+  getInitialState: ->
+    Orders: []
 
-  getDefaultState: ->
-    orders: []
+  componentDidMount: ->
+    OrdersStore.listen(@onChange)
+    OrdersActions.initData(@props.data)
 
-  addOrder: (order) -> 
-    orders = React.addons.update(
-      @State.orders, {$push: [order]}
-    )
-    @setState orders: orders
+  componentWillUnmount: ->
+    OrdersStore.unlisten(@onChange)
 
-  deleteOrder: (order) -> 
-    index = @state.orders.indexOf order
-    orders = React.addons.update(@state.orders, {$splice: [[index, 1]] })
+  onChange: (state) ->
+    @setState(state)
 
-    @replaceState orders: orders
 
-  updateOrder: (order, data) ->
-    index = @state.orders.indexOf order
-    orders = React.addons.update(
-      @state.orders, {$splice: [[index, 1, data]] }
-    )
-    @setState orders: orders
 
-  renderOrderView: ->
+  render: ->
     React.DOM.div
-      className: 'orders'
+      className: 'Orders'
       React.DOM.h3
         className: 'title'
         'Orders'
+
       React.DOM.table
-        className: 'table table-striped table-sm table-bordered' 
-        React.DOM.thead
-          className: 'thead-inverse'
+        className: 'table table-bordered'
+        React.DOM.thead null,
           React.DOM.tr null,
-            React.DOM.th null, 'Table No'
+            React.DOM.th null, 'Table'
+            React.DOM.th null, 'Name'
             React.DOM.th null, 'Total'
             React.DOM.th null, 'Action'
-#        React.DOM.tbody null,
-#          for order in @state.order
-#            React.createElement Order,
-#              key: order.id,
-#              order: order,
-#              handleDeleteOrder: @deleteOrder,
-#              handleEditOrder: @updateOrder
-
-  render: ->
-    @renderOrderView()
-
-
+        React.DOM.tbody null,
+          for Order in @state.Orders
+            React.createElement Order,
+              key: Order.id,
+              Order: Order

@@ -3,7 +3,7 @@ class OrdersStore
 
   constructor: ->
     @bindActions(OrdersActions)
-    @orders = []
+    @order = []
 
 #    @exportPublicMethods(
 #      {
@@ -11,3 +11,10 @@ class OrdersStore
 #      }
 #    )
 
+  onGetOrder: (props)->
+    $.ajax
+      method: 'GET'
+      url: "/orders/#{ props }"
+      dataType: 'JSON'
+      success: (e) =>
+        @order = e.order 

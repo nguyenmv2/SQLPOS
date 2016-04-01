@@ -16,3 +16,9 @@ menu2 = MenuItem.create!([
                              {name: 'Steam Rice', price: 10.50}
                          ])
 
+order1 = Order.create!([
+  {table: '1', total: '0'}
+  ])
+item1 = Item.create!([
+  {price: 12.50, menu_item_id: 1, order_id: 1}
+  ])

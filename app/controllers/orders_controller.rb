@@ -5,17 +5,20 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    @items  =  Item.all
-    @customization = Customization.all
-    @menuItems = MenuItem.all
-    @modifiers = Modifier.all
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
     @orders = Order.find(params[:id])
+    @items  = Item.where(order_id: params[:id])
+    @customizations = []
+    @items.each do |item|
+      custo = Customization.where(item_id: item.id)
+      @customizations.push(custo)
+    end
   end
+
 
   # GET /orders/new
   def new

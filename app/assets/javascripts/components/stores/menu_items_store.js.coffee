@@ -56,7 +56,7 @@ class MenuItemsStore
       data: dat
       success: (k) =>
         @succ(k)
-        
+
     # $.post '/menu_items ', { menu_item: data }, (e) =>
     #   @menu_items = React.addons.update(
     #     @menu_items, { $push: [e] }
