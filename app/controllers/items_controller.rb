@@ -10,9 +10,10 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @items = Item.find(params[:id])
-    @menu = @item.menu_item
 
+    if @item.price == 0.0 or @item.price.nil?
+      @item.update(price: @item.menu_item.price)
+    end
   end
 
   # GET /items/new
@@ -29,11 +30,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-
     @item = Item.new(item_params)
-    @item.price = @item.menu_item.price
-    @menu = @item.menu_item
-    @item.price = @menu.price
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -43,6 +40,7 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+    @item.update(price: @item.menu_item.price)
     @item.order.calPrice()
   end
 

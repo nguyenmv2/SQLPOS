@@ -10,13 +10,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @orders = Order.find(params[:id])
-    @items  = Item.where(order_id: params[:id])
-    @customizations = []
-    @items.each do |item|
-      custo = Customization.where(item_id: item.id)
-      @customizations.push(custo)
-    end
+    @order.calPrice()
   end
 
 

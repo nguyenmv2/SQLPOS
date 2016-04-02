@@ -193,7 +193,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
-  jbuilder (~> 2.0)
+  jbuilder
   jquery-rails
   rails (= 4.2.4)
   rails-assets-alt!

@@ -27,8 +27,6 @@ class ModifiersStore
         )
         @emitChange()
 
-
-
   onEditModifier: (props) ->
     data =
       name:       props.name
