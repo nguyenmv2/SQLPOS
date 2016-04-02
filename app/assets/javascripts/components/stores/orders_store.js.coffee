@@ -3,18 +3,27 @@ class OrdersStore
 
   constructor: ->
     @bindActions(OrdersActions)
-    @order = []
+    @orders = []
+    @exportPublicMethods(
+      {
+        getOrders: @getOrders
+      }
+    )
 
-#    @exportPublicMethods(
-#      {
-#        getOrders: @getOrders
-#      }
-#    )
 
   onGetOrder: (props)->
     $.ajax
       method: 'GET'
-      url: "/orders/#{ props }"
+      url: "/orders/#{props}"
       dataType: 'JSON'
       success: (e) =>
-        @order = e.order 
+        @order = e.order
+        @items = e.order.items
+
+  onInitData: (props) ->
+    @orders = props.orders
+
+  getOrders: () ->
+    @getState().orders
+
+window.OrdersStore = alt.createStore(OrdersStore)

@@ -22,6 +22,16 @@ order1 = Order.create!([
 item1 = Item.create!([
   {price: 12.50, menu_item_id: 1, order_id: 1}
   ])
-customizations = Customization.create!([
+customizations1 = Customization.create!([
   {item_id: 1, modifier_id: 2}
+  ])
+
+order2 = Order.create!([
+  {table: '2', total: '0'}
+  ])
+item2 = Item.create!([
+  {price: 12.50, menu_item_id: 1, order_id: 2}
+  ])
+customizations2 = Customization.create!([
+  {item_id: 2, modifier_id: 2}
   ])
