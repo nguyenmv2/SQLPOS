@@ -1,0 +1,27 @@
+var ItemsList = React.createClass ({
+
+  render: function() {
+    return (
+      <div>
+        <h3 className='title'>
+          TITLE
+        </h3>
+        <table className='table table-bordered'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              _.map(this.props.items, function(item) {
+                return <ItemsListEntry key={item.id} item={item} />
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+})
