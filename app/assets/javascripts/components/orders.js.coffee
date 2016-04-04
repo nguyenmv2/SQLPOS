@@ -41,7 +41,19 @@ Link = ReactRouter.Link
         div className:'row',
           h3 className: "title",
             'Orders'
-
+        div className:'row',
+          React.DOM.form
+            className: 'form-inline'
+            onSubmit: @handleSubmit
+            React.DOM.div
+              className: 'form-group'
+              React.DOM.input
+                type: 'text'
+                className: 'form-control'
+                placeholder: 'Table'
+                name: 'name'
+                value: @state.name
+                onChange: @handleChange
           a
             className: 'btn btn-default'
             onClick: @handleNewOrder

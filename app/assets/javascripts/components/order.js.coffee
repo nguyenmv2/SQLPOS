@@ -36,6 +36,7 @@
 
     div null,
       div className:"container containerChild left col-md-9",
+
         div className: 'row',
           React.createElement ItemsSelector,
               key: @state.order.id,
