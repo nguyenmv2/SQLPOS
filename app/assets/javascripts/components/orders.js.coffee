@@ -15,7 +15,8 @@ Link = ReactRouter.Link
 
   onChange: (state) ->
     @setState(state)
-
+  handleNewOrder: ->
+    OrdersActions.createOrder()
   render: ->
 
     # div
@@ -36,25 +37,34 @@ Link = ReactRouter.Link
     #           content: ''
 
     div
-      className: "container"
-      h3
-        className: "title"
-        'Orders'
-        React.createElement OrderList, orders: @state.orders
+      className: "container",
+        div className:'row',
+          h3 className: "title",
+            'Orders'
+
+          a
+            className: 'btn btn-default'
+            onClick: @handleNewOrder
+            'New Order'
+
+        div className:'row',
+          React.createElement OrderList, orders: @state.orders
 
 @OrderList = React.createClass
   render: ->
 
-    table
-      className: 'table table-bordered'
-      thead null,
-        tr null,
-          th null, 'ID'
-          th null, 'TABLE'
-          th null, 'TOTAL'
-          th null, 'ACTION'
-      tbody null,
-        _.map @props.orders, (order)=>
-          React.createElement OrderListItem,
-            key: "#{order.id}",
-            order: order
+
+      table
+        className: 'table table-bordered'
+        thead null,
+          tr null,
+            th null, 'ID'
+            th null, 'TABLE'
+            th null, 'TOTAL'
+            th null, 'STATUS'
+            th null, 'ACTION'
+        tbody null,
+          _.map @props.orders, (order)=>
+            React.createElement OrderListItem,
+              key: "#{order.id}",
+              order: order

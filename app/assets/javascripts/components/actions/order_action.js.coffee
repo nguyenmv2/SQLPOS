@@ -3,7 +3,8 @@ class OrderActions
     @generateActions(
       'initData',
       'addItem',
-      'refresh'
+      'refresh',
+      'finishOrder'
     )
 
 @OrderActions = alt.createActions(OrderActions)

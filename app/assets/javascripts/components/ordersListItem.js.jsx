@@ -10,6 +10,7 @@ var OrderListItem = React.createClass({
       <td> {this.props.order.id} </td>
       <td> {this.props.order.table} </td>
       <td> {this.props.order.total} </td>
+      <td> {this.props.order.status} </td>
       <td>
         {/*<button className="btn btn-default">*/}
         <Link className="btn btn-default" to={link} params={{order: this.props.order}}> View </Link>

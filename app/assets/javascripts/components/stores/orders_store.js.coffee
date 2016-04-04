@@ -21,6 +21,23 @@ class OrdersStore
         @onInitData(e)
         @emitChange()
 
+  onCreateOrder: () ->
+    data =
+      table: ''
+      total: '0.0'
+      status: "ONGOING",
+      items: []
+    URL = '/orders'
+    $.ajax
+      method: 'POST'
+      url: URL
+      dataType: 'JSON'
+      data: {order: data}
+      success: (data) =>
+        @orders = React.addons.update(
+          @orders, { $push: [data] }
+        )
+        @emitChange()
 
   onGetOrder: (props)->
     $.ajax

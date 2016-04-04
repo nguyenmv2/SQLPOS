@@ -17,7 +17,7 @@ menu2 = MenuItem.create!([
                          ])
 
 order1 = Order.create!([
-  {table: '1', total: '0'}
+  {table: '1', total: '0', status: 'ONGOING'}
   ])
 item1 = Item.create!([
   {price: 12.50, menu_item_id: 1, order_id: 1}
@@ -27,7 +27,7 @@ customizations1 = Customization.create!([
   ])
 
 order2 = Order.create!([
-  {table: '2', total: '0'}
+  {table: '2', total: '0',status: 'ONGOING'}
   ])
 item2 = Item.create!([
   {price: 12.50, menu_item_id: 1, order_id: 2}
