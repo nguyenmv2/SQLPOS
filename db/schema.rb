@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160222162903) do
   create_table "orders", force: :cascade do |t|
     t.decimal  "total",      precision: 8, scale: 2
     t.string   "table"
+    t.string   "status"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

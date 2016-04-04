@@ -6,6 +6,7 @@
 json.order do
   json.id @order.id
   json.table @order.table
+  # json.status @order.status
   json.total @order.total
   json.items do
     json.partial! partial: 'items/item', collection: @order.items, as: :item

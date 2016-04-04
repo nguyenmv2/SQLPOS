@@ -35,5 +35,9 @@
             items: @state.order.items,
             menu_items: @state.menu_items
       div className:"container right col-md-3",
-        React.createElement ItemsList,
-          items: @state.order.items
+        div className: 'row',
+          React.createElement ItemsList,
+            items: @state.order.items
+        div className: 'row',
+          h3 null,
+            "Total: #{@state.order.total}"
