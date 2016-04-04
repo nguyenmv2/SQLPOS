@@ -1,19 +1,20 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, :updateP, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
+    for item in @items
+      item.update(price: updatePrice(item))
+    end
+
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
 
-    if @item.price == 0.0 or @item.price.nil?
-      @item.update(price: @item.menu_item.price)
-    end
   end
 
   # GET /items/new
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
-    @item.update(price: @item.menu_item.price)
+    @item.update(price: updatePrice(@item))
     @item.order.calPrice()
   end
 
@@ -72,11 +73,28 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+      updatePrice()
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       # params.require(:item).permit(:name, :price,:menu_item_id)
       params.require(:item).permit(:menu_item_id,:order_id)
+    end
+    def updateP
+      updatePrice(@item)
+    end
+    def updatePrice(item)
+      if item.price == 0.0 or item.price.nil?
+        item.update(price: item.menu_item.price)
+      end
+      deltaP = 0.0
+      for custo in item.customizations
+        deltaP += custo.modifier.deltaPrice
+      end
+      if (item.price - deltaP != item.menu_item.price)
+        return deltaP + item.menu_item.price
+      end
+      return item.price
     end
 end

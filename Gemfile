@@ -43,7 +43,6 @@ gem 'devise'
 
 # React gem
 gem 'react-rails'
-
 gem 'react-router-rails'
 
 group :development, :test do

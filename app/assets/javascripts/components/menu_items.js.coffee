@@ -2,9 +2,11 @@
   getInitialState: ->
     menu_items: []
 
-  componentDidMount: ->
+  componentWillMount: ->
     MenuItemsStore.listen(@onChange)
-    MenuItemsActions.initData(@props.data)
+
+  componentDidMount: ->
+    MenuItemsActions.initData()
 
   componentWillUnmount: ->
     MenuItemsStore.unlisten(@onChange)
@@ -12,7 +14,7 @@
   onChange: (state) ->
     @setState(state)
 
-  render: -> 
+  render: ->
     React.DOM.div
       className: 'menu_items'
       React.DOM.h3
@@ -32,5 +34,3 @@
             React.createElement MenuItem,
               key: menu_item.id,
               menu_item: menu_item
-
-

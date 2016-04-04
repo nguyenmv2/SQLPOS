@@ -10,6 +10,17 @@ class OrdersStore
       }
     )
 
+  onGetAllOrder: () ->
+    console.log("called")
+    $.ajax
+      method: 'GET'
+      url: '/orders'
+      dataType: 'JSON'
+      success: (e) =>
+        console.log(e)
+        @onInitData(e)
+        @emitChange()
+
 
   onGetOrder: (props)->
     $.ajax
@@ -21,6 +32,7 @@ class OrdersStore
         @items = e.order.items
 
   onInitData: (props) ->
+    console.log("asd")
     @orders = props.orders
 
   getOrders: () ->

@@ -14,14 +14,12 @@ class ModifiersStore
   onAddModifier: (data) ->
     dat = { modifier: data }
     URL = '/modifiers'
-    console.log(@modifiers)
     $.ajax
       method: 'POST'
       url: URL
       dataType: 'JSON'
       data: dat
       success: (modifier) =>
-        console.log(@modifiers)
         @modifiers = React.addons.update(
           @modifiers, { $push: [modifier] }
         )
@@ -59,8 +57,16 @@ class ModifiersStore
         @emitChange()
 
 
-  onInitData: (props) ->
-    @modifiers = props
+
+  onInitData: () ->
+    $.ajax
+      method: 'GET'
+      url: "/modifiers"
+      dataType: 'JSON'
+      success: (e) =>
+        @modifiers = e
+        console.log(@modifiers)
+        @emitChange()
 
   getModifiers: () ->
     @getState().modifiers

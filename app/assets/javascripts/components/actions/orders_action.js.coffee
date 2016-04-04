@@ -2,6 +2,7 @@ class OrdersActions
   constructor: ->
     @generateActions(
       'initData',
+      'getAllOrder'
       'addOrder',
       'editOrder',
       'deleteOrder'

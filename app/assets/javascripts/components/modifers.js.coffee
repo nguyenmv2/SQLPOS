@@ -2,9 +2,11 @@
   getInitialState: ->
     modifiers: []
 
-  componentDidMount: ->
+  componentWillMount: ->
     ModifiersStore.listen(@onChange)
-    ModifiersActions.initData(@props.data)
+
+  componentDidMount: ->
+    ModifiersActions.initData()
 
   componentWillUnmount: ->
     ModifiersStore.unlisten(@onChange)
@@ -12,7 +14,7 @@
   onChange: (state) ->
     @setState(state)
 
-  
+
 
   render: ->
     React.DOM.div

@@ -13,8 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+//REACT dependencies
 //= require react
 //= require react-dom
 //= require react_ujs
+
+//React Router dependencies
+//= require react_router
+//= require react_router_ujs
+
 //= require components
 //= require_tree .
