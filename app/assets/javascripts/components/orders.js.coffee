@@ -1,4 +1,4 @@
-{div, h3, ul, li, span, table, thead, tr, th, tbody, td, a } = React.DOM
+{div, h3, ul, li, span, table, thead, tr, th, tbody, td, a, section } = React.DOM
 
 @Orders = React.createClass
   getInitialState: ->
@@ -19,16 +19,30 @@
     console.log(@state.orders)
 
   render: ->
-    React.createElement InfoTile,
-      content: 'Testing123',
-      subject: 'Subjet Test',
-      width: 6
+
     div
-      className: "orders"
-      h3
-        className: "title"
-        'Orders'
-        React.createElement OrderList, orders: @state.orders
+      className: 'wrapper',
+      div
+        className: 'content-wrapper',
+        section
+          className: 'content-header',
+          h3 null, 'Test Widget'
+        section
+          className: 'content',
+          div
+            className: 'row',
+            React.createElement InfoTile,
+              key: 'RowOne',
+              width: 3,
+              subject: 'Test',
+              content: ''
+
+    # div
+    #   className: "orders"
+    #   h3
+    #     className: "title"
+    #     'Orders'
+    #     React.createElement OrderList, orders: @state.orders
 
 @OrderList = React.createClass
   render: ->
