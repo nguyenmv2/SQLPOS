@@ -5,7 +5,8 @@ class OrdersActions
       'getAllOrder'
       'addOrder',
       'editOrder',
-      'deleteOrder'
+      'deleteOrder',
+      
     )
 
 @OrdersActions = alt.createActions(OrdersActions)

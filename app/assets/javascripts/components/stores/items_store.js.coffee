@@ -44,8 +44,11 @@ class ItemsStore
         @items = React.addons.update(
           @items, { $push: [e] }
         )
+        props =
+          order_id: data.order_id
+          item: e
+        OrderActions.initData(props.order_id)
 
-        @emitChange()
 
 
 

@@ -1,14 +1,16 @@
-# class CustomizationsStore
-#   @displayName: 'CustomizationStore'
+class CustomizationsStore
+  @displayName: 'CustomizationStore'
 
-#   constructor: ->
-#     @bindActions(CustomizationsActions)
-#     @customizations = []
+  constructor: ->
+    @bindActions(CustomizationsActions)
+    @customizations = []
 
-# #    @exportPublicMethods(
-# #      {
-# #        getCustomizations: @getCustomizations
-# #      }
-# #    )
+  onInitData: ->
+    $.ajax
+      method: 'GET'
+      url: "/customizations"
+      dataType: 'JSON'
+      success: (e) =>
+        @customizations = e
 
-# @CustomizationsStore = alt.createStore(CustomizationsStore)
+@CustomizationsStore = alt.createStore(CustomizationsStore)
